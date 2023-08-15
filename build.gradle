@@ -7,6 +7,8 @@ buildscript {
 
      dependencies {
          classpath 'com.android.tools.build:gradle:8.0.2'
+         classpath "com.google.protobuf:protobuf-gradle-plugin:0.9.4"
+
 //         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.9.4'
 
 //         NOTE: Do not place your application dependencies here; they belong
@@ -40,18 +42,10 @@ tasks.register("updateGradleWrapper", Wrapper) {
 
 //==================================================================================================
 apply plugin: 'com.android.application'
-//apply plugin: 'com.google.protobuf'
-//    apply plugin: "com.google.protobuf" version "0.9.1" apply false
-
+apply plugin: 'com.google.protobuf'
 
 android {
 
-    // signingConfigs {
-    //     debug {
-    //         storeFile file('/home/esmaeeil/Downloads/keyring.jks')
-    //         keyAlias 'platform'
-    //     }
-    // }
     namespace 'com.android.settings.intelligence'
     compileSdk 33
 
@@ -71,28 +65,13 @@ android {
 
     buildTypes {
         debug {
-//            applicationIdSuffix ".dev"
-//
-//            debuggable true
-//            minifyEnabled false
-//            shrinkResources false
-//            zipAlignEnabled false
+
         }
         debugProguard {
-//            applicationIdSuffix ".dev"
-//
-//            debuggable true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
-//            minifyEnabled true
-//            shrinkResources true
-//            zipAlignEnabled true
+
         }
         release {
-//            debuggable false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
-//            minifyEnabled true
-//            shrinkResources true
-//            zipAlignEnabled true
+
         }
     }
 
@@ -139,9 +118,6 @@ android {
 }
 
 dependencies {
-   
-    
-    
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
@@ -158,21 +134,21 @@ dependencies {
 
 }
 
-//protobuf {
-//    protoc {
-//        artifact = "com.google.protobuf:protoc:3.10.0"
-//    }
-//
-//    // Generates the java Protobuf-lite code for the Protobufs in this project. See
-//    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
-//    // for more information.
-//    generateProtoTasks {
-//        all().each { task ->
-//            task.builtins {
-//                java {
-//                    option 'lite'
-//                }
-//            }
-//        }
-//    }
-//}
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.10.0"
+    }
+
+    // Generates the java Protobuf-lite code for the Protobufs in this project. See
+    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
+    // for more information.
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+            }
+        }
+    }
+}
