@@ -15,8 +15,8 @@
   limitations under the License.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.android.settings.intelligence">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<!--          package="com.android.settings.intelligence">-->
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />

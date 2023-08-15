@@ -1,0 +1,178 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
+     dependencies {
+         classpath 'com.android.tools.build:gradle:8.0.2'
+//         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.9.4'
+
+//         NOTE: Do not place your application dependencies here; they belong
+//         in the individual module build.gradle files
+     }
+}
+
+allprojects {
+    repositories {
+         google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+tasks.register("updateGradleWrapper", Wrapper) {
+    // https://docs.gradle.org/current/release-notes.html
+    // https://github.com/gradle/gradle/releases
+    gradleVersion = '8.0'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
+}
+
+
+//plugins {
+////    id 'com.android.application' version '8.0.1' apply false
+////    id 'com.android.library' version '8.0.1' apply false
+//    id "com.google.protobuf" version "0.9.1" apply false
+////    id 'org.jetbrains.kotlin.android' version '1.9.0' apply false
+//
+//}
+
+//==================================================================================================
+apply plugin: 'com.android.application'
+//apply plugin: 'com.google.protobuf'
+//    apply plugin: "com.google.protobuf" version "0.9.1" apply false
+
+
+android {
+
+    // signingConfigs {
+    //     debug {
+    //         storeFile file('/home/esmaeeil/Downloads/keyring.jks')
+    //         keyAlias 'platform'
+    //     }
+    // }
+    namespace 'com.android.settings.intelligence'
+    compileSdk 33
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId "com.android.settings.intelligence"
+        minSdk 33
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug {
+//            applicationIdSuffix ".dev"
+//
+//            debuggable true
+//            minifyEnabled false
+//            shrinkResources false
+//            zipAlignEnabled false
+        }
+        debugProguard {
+//            applicationIdSuffix ".dev"
+//
+//            debuggable true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+//            minifyEnabled true
+//            shrinkResources true
+//            zipAlignEnabled true
+        }
+        release {
+//            debuggable false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+//            minifyEnabled true
+//            shrinkResources true
+//            zipAlignEnabled true
+        }
+    }
+
+    dexOptions {
+        dexInProcess true
+        preDexLibraries true
+    }
+
+    lintOptions {
+        baseline file("lint-baseline.xml")
+
+        abortOnError true
+        checkAllWarnings true
+        showAll true
+
+        warningsAsErrors true
+
+        // HTML report is enough (can be found inside build/reports/)
+        xmlReport false
+
+        // do not warn about translations
+        disable 'MissingTranslation', 'ExtraTranslation'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude '.readme'
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+
+            aidl.srcDirs = ['src']
+            assets.srcDirs = ['assets']
+            java.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            resources.srcDirs = ['res']
+        }
+    }
+}
+
+dependencies {
+   
+    
+    
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.preference:preference:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.1'
+    implementation 'androidx.legacy:legacy-preference-v14:1.0.0'
+
+    // Proto DataStore
+    implementation  "androidx.datastore:datastore-core:1.0.0-alpha01"
+    implementation  "com.google.protobuf:protobuf-javalite:3.10.0"
+
+
+
+}
+
+//protobuf {
+//    protoc {
+//        artifact = "com.google.protobuf:protoc:3.10.0"
+//    }
+//
+//    // Generates the java Protobuf-lite code for the Protobufs in this project. See
+//    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
+//    // for more information.
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.builtins {
+//                java {
+//                    option 'lite'
+//                }
+//            }
+//        }
+//    }
+//}
