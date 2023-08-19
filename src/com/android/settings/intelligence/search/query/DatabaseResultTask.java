@@ -27,7 +27,7 @@ import androidx.annotation.VisibleForTesting;
 import android.util.Log;
 import android.util.Pair;
 
-import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto;
+//import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto;
 import com.android.settings.intelligence.overlay.FeatureFactory;
 import com.android.settings.intelligence.search.SearchFeatureProvider;
 import com.android.settings.intelligence.search.SearchResult;
@@ -83,8 +83,8 @@ public class DatabaseResultTask extends SearchQueryTask.QueryWorker {
             IndexColumns.DATA_SUMMARY_OFF_NORMALIZED,
     };
 
-    public static final int QUERY_WORKER_ID =
-            SettingsIntelligenceLogProto.SettingsIntelligenceEvent.SEARCH_QUERY_DATABASE;
+    public static final int QUERY_WORKER_ID =13;
+//            SettingsIntelligenceLogProto.SettingsIntelligenceEvent.SEARCH_QUERY_DATABASE;
 
     /**
      * Base ranks defines the best possible rank based on what the query matches.

@@ -17,7 +17,7 @@
 
 package com.android.settings.intelligence.search;
 
-import static com.android.settings.intelligence.nano.SettingsIntelligenceLogProto.SettingsIntelligenceEvent;
+//import static com.android.settings.intelligence.nano.SettingsIntelligenceLogProto.SettingsIntelligenceEvent;
 
 import android.app.Activity;
 import android.content.Context;
@@ -168,7 +168,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
     @Override
     public void onStart() {
         super.onStart();
-        mMetricsFeatureProvider.logEvent(SettingsIntelligenceEvent.OPEN_SEARCH_PAGE);
+        mMetricsFeatureProvider.logEvent(4);
     }
 
     @Override
@@ -184,12 +184,12 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
     @Override
     public void onStop() {
         super.onStop();
-        mMetricsFeatureProvider.logEvent(SettingsIntelligenceEvent.LEAVE_SEARCH_PAGE);
+        mMetricsFeatureProvider.logEvent(5);
         final Activity activity = getActivity();
         if (activity != null && activity.isFinishing()) {
             if (mNeverEnteredQuery) {
                 mMetricsFeatureProvider.logEvent(
-                        SettingsIntelligenceEvent.LEAVE_SEARCH_WITHOUT_QUERY);
+                        12);
             }
         }
     }
@@ -232,7 +232,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
             mSavedQueryController.loadSavedQueries();
             mSearchFeatureProvider.hideFeedbackButton(getView());
         } else {
-            mMetricsFeatureProvider.logEvent(SettingsIntelligenceEvent.PERFORM_SEARCH);
+            mMetricsFeatureProvider.logEvent(6);
             restartLoaders();
         }
 
@@ -304,14 +304,14 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
                 : 0;
         if (resultCount == 0) {
             mNoResultsView.setVisibility(View.VISIBLE);
-            mMetricsFeatureProvider.logEvent(SettingsIntelligenceEvent.SHOW_SEARCH_NO_RESULT,
+            mMetricsFeatureProvider.logEvent(10,
                     queryToResultLatencyMs);
             EventLog.writeEvent(90204 /* settings_latency*/, 1 /* query_to_result_latency */,
                     (int) queryToResultLatencyMs);
         } else {
             mNoResultsView.setVisibility(View.GONE);
             mResultsRecyclerView.scrollToPosition(0);
-            mMetricsFeatureProvider.logEvent(SettingsIntelligenceEvent.SHOW_SEARCH_RESULT,
+            mMetricsFeatureProvider.logEvent(11,
                     queryToResultLatencyMs);
         }
         mSearchFeatureProvider.showFeedbackButton(this, getView());

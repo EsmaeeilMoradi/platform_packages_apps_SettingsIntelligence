@@ -52,7 +52,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
-import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto;
+//import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto;
 import com.android.settings.intelligence.overlay.FeatureFactory;
 import com.android.settings.intelligence.search.sitemap.SiteMapPair;
 
@@ -346,7 +346,7 @@ public class DatabaseIndexingManager {
         protected void onPostExecute(Void aVoid) {
             int indexingTime = (int) (System.currentTimeMillis() - mIndexStartTime);
             FeatureFactory.get(mContext).metricsFeatureProvider(mContext).logEvent(
-                    SettingsIntelligenceLogProto.SettingsIntelligenceEvent.INDEX_SEARCH,
+                    9,
                     indexingTime);
 
             mIsIndexingComplete.set(true);

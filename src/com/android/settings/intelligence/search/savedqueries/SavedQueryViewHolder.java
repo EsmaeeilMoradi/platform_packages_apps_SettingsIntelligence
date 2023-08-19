@@ -19,7 +19,7 @@ package com.android.settings.intelligence.search.savedqueries;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto;
+//import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto;
 import com.android.settings.intelligence.search.SearchFragment;
 import com.android.settings.intelligence.search.SearchResult;
 import com.android.settings.intelligence.search.SearchViewHolder;
@@ -35,7 +35,7 @@ public class SavedQueryViewHolder extends SearchViewHolder {
 
     @Override
     public int getClickActionMetricName() {
-        return SettingsIntelligenceLogProto.SettingsIntelligenceEvent.CLICK_SAVED_QUERY;
+        return 8;
     }
 
     @Override

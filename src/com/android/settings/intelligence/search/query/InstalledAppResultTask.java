@@ -24,7 +24,7 @@ import android.net.Uri;
 import android.provider.Settings;
 
 import com.android.settings.intelligence.R;
-import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto;
+//import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto;
 import com.android.settings.intelligence.search.AppSearchResult;
 import com.android.settings.intelligence.search.ResultPayload;
 import com.android.settings.intelligence.search.SearchResult;
@@ -41,7 +41,7 @@ import java.util.List;
 public class InstalledAppResultTask extends SearchQueryTask.QueryWorker {
 
     public static final int QUERY_WORKER_ID =
-            SettingsIntelligenceLogProto.SettingsIntelligenceEvent.SEARCH_QUERY_INSTALLED_APPS;
+            14;
 
     private final PackageManager mPackageManager;
     private final String INTENT_SCHEME = "package";

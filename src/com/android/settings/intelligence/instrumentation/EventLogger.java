@@ -15,11 +15,11 @@
  */
 
 package com.android.settings.intelligence.instrumentation;
-
-import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto
-        .SettingsIntelligenceEvent;
+//
+//import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto
+//        .SettingsIntelligenceEvent;
 
 public interface EventLogger {
 
-    void log(SettingsIntelligenceEvent event);
+//    void log(SettingsIntelligenceEvent event);
 }

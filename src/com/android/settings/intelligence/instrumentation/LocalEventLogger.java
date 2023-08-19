@@ -18,17 +18,17 @@ package com.android.settings.intelligence.instrumentation;
 
 import android.util.Log;
 
-import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto;
+//import com.android.settings.intelligence.nano.SettingsIntelligenceLogProto;
 
 public class LocalEventLogger implements EventLogger {
 
     private static final boolean SHOULD_LOG = false;
     private static final String TAG = "SettingsIntLogLocal";
 
-    @Override
-    public void log(SettingsIntelligenceLogProto.SettingsIntelligenceEvent event) {
-        if (SHOULD_LOG) {
-            Log.i(TAG, event.toString());
-        }
-    }
+//    @Override
+//    public void log(SettingsIntelligenceLogProto.SettingsIntelligenceEvent event) {
+//        if (SHOULD_LOG) {
+//            Log.i(TAG, event.toString());
+//        }
+//    }
 }

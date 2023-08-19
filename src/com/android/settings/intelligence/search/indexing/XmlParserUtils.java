@@ -38,37 +38,37 @@ public class XmlParserUtils {
     public static String getDataKey(Context context, AttributeSet attrs) {
         return getData(context, attrs,
                 R.styleable.Preference,
-                R.styleable.Preference_android_key);
+                6);
     }
 
     public static String getDataTitle(Context context, AttributeSet attrs) {
         return getData(context, attrs,
                 R.styleable.Preference,
-                R.styleable.Preference_android_title);
+                4);
     }
 
     public static String getDataSummary(Context context, AttributeSet attrs) {
         return getData(context, attrs,
                 R.styleable.Preference,
-                R.styleable.Preference_android_summary);
+                7);
     }
 
     public static String getDataSummaryOn(Context context, AttributeSet attrs) {
         return getData(context, attrs,
-                R.styleable.CheckBoxPreference,
-                R.styleable.CheckBoxPreference_android_summaryOn);
+                R.styleable.Preference,
+                7);
     }
 
-    public static String getDataSummaryOff(Context context, AttributeSet attrs) {
-        return getData(context, attrs,
-                R.styleable.CheckBoxPreference,
-                R.styleable.CheckBoxPreference_android_summaryOff);
-    }
+//    public static String getDataSummaryOff(Context context, AttributeSet attrs) {
+//        return getData(context, attrs,
+//                androidx.legacy.preference.R.styleable.CheckBoxPreference,
+//                R.styleable.);
+//    }
 
     public static String getDataEntries(Context context, AttributeSet attrs) {
         return getDataEntries(context, attrs,
-                R.styleable.ListPreference,
-                R.styleable.ListPreference_android_entries);
+                R.styleable.Preference,
+               0);
     }
 
     public static String getDataKeywords(Context context, AttributeSet attrs) {
@@ -99,7 +99,7 @@ public class XmlParserUtils {
 
     public static int getDataIcon(Context context, AttributeSet attrs) {
         final TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.Preference);
-        final int dataIcon = ta.getResourceId(R.styleable.Preference_android_icon, 0);
+        final int dataIcon = ta.getResourceId(0, 0);
         ta.recycle();
         return dataIcon;
     }
@@ -109,7 +109,7 @@ public class XmlParserUtils {
      */
     public static String getDataChildFragment(Context context, AttributeSet attrs) {
         return getData(context, attrs, R.styleable.Preference,
-                R.styleable.Preference_android_fragment);
+                13);
     }
 
     @Nullable
