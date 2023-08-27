@@ -20,6 +20,8 @@ package com.android.settings.intelligence.search;
 import android.content.Context;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +72,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchViewHolder>
 
     @Override
     public void onBindViewHolder(SearchViewHolder holder, int position) {
+        Log.e("ESM", "onBindViewHolder: "+mSearchResults.get(position).title );
         holder.onBind(mFragment, mSearchResults.get(position));
     }
 

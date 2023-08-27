@@ -22,6 +22,7 @@ package com.android.settings.intelligence.search;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.VisibleForTesting;
 import androidx.cardview.widget.CardView;
 import androidx.loader.content.Loader;
@@ -29,6 +30,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.fragment.app.Fragment;
+
 import android.text.TextUtils;
 import android.util.EventLog;
 import android.util.Log;
@@ -53,11 +55,11 @@ import java.util.List;
 
 /**
  * This fragment manages the lifecycle of indexing and searching.
- *
+ * <p>
  * In onCreate, the indexing process is initiated in DatabaseIndexingManager.
  * While the indexing is happening, loaders are blocked from accessing the database, but the user
  * is free to start typing their query.
- *
+ * <p>
  * When the indexing is complete, the fragment gets a callback to initialize the loaders and search
  * the query if the user has entered text.
  */
@@ -117,6 +119,10 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
         mSearchAdapter = new SearchResultsAdapter(this /* fragment */);
         mSavedQueryController = new SavedQueryController(
                 getContext(), loaderManager, mSearchAdapter);
+
+        Log.e("ESM", "mSearchAdapter: " + mSearchAdapter.getSearchResults());
+        Log.e("ESM", "loaderManager: " + loaderManager.getLoader(0));
+        Log.e("ESM", "mSavedQueryController: " + mSavedQueryController);
         mSearchFeatureProvider.initFeedbackButton();
 
         if (savedInstanceState != null) {
@@ -129,6 +135,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
         mSearchFeatureProvider.updateIndexAsync(getContext(), this /* indexingCallback */);
         if (SearchFeatureProvider.DEBUG) {
             Log.d(TAG, "onCreate spent " + (System.currentTimeMillis() - startTime) + " ms");
+            Log.d("ESM", "onCreate spent " + (System.currentTimeMillis() - startTime) + " ms");
         }
     }
 
@@ -140,9 +147,11 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         final Activity activity = getActivity();
         final View view = inflater.inflate(R.layout.search_panel, container, false);
+
+        Log.e("ESM", "onCreateView: SearchFragment");
         mResultsRecyclerView = view.findViewById(R.id.list_results);
         mResultsRecyclerView.setAdapter(mSearchAdapter);
         mResultsRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
@@ -159,6 +168,8 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 
         mSearchView = toolbar.findViewById(R.id.search_view);
         mSearchView.setQuery(mQuery, false /* submitQuery */);
+
+        Log.e("ESM", "onCreateView: mQuery" + mQuery);
         mSearchView.setOnQueryTextListener(this);
         mSearchView.requestFocus();
 
@@ -207,6 +218,8 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
         if (TextUtils.equals(query, mQuery)) {
             return true;
         }
+
+        Log.e("ESM", "onQueryTextChange: " + query);
         mEnterQueryTimestampMs = System.currentTimeMillis();
         final boolean isEmptyQuery = TextUtils.isEmpty(query);
 
@@ -261,7 +274,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 
     @Override
     public void onLoadFinished(Loader<List<? extends SearchResult>> loader,
-            List<? extends SearchResult> data) {
+                               List<? extends SearchResult> data) {
         mSearchAdapter.postSearchResults(data);
     }
 
@@ -321,6 +334,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
         final String queryString = query.toString();
         mMetricsFeatureProvider.logEvent(vh.getClickActionMetricName());
         mSearchView.setQuery(queryString, false /* submit */);
+        Log.e("ESM", "onSavedQueryClicked: "+query );
         onQueryTextChange(queryString);
     }
 

@@ -60,10 +60,13 @@ public class SavedQueryController implements LoaderManager.LoaderCallbacks,
     public Loader onCreateLoader(int id, Bundle args) {
         switch (id) {
             case SearchCommon.SearchLoaderId.SAVE_QUERY_TASK:
+                Log.e("ESM", "onCreateLoader: 1" );
                 return new SavedQueryRecorder(mContext, args.getString(ARG_QUERY));
             case SearchCommon.SearchLoaderId.REMOVE_QUERY_TASK:
+                Log.e("ESM", "onCreateLoader: 2" );
                 return new SavedQueryRemover(mContext);
             case SearchCommon.SearchLoaderId.SAVED_QUERIES:
+                Log.e("ESM", "onCreateLoader: 3" );
                 return mSearchFeatureProvider.getSavedQueryLoader(mContext);
         }
         return null;
